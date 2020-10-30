@@ -1,6 +1,6 @@
 import { Button, Dialog, DialogContent, DialogTitle, FormControl, FormGroup, IconButton, TextField } from '@material-ui/core'
 import React, { useState } from 'react'
-import {useStylesSignIn} from '../../pages/SignIn'
+import {useStylesSignIn} from '../pages/SignIn'
 
 interface ModalBlockProps{
   title: string;
