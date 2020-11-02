@@ -1,9 +1,12 @@
-import { Button, Dialog, DialogContent, DialogTitle, FormControl, FormGroup, IconButton, TextField } from '@material-ui/core'
-import React, { useState } from 'react'
+import Dialog from '@material-ui/core/Dialog/Dialog'
+import DialogContent from '@material-ui/core/DialogContent/DialogContent'
+import DialogTitle from '@material-ui/core/DialogTitle/DialogTitle'
+import IconButton from '@material-ui/core/IconButton/IconButton'
+import React from 'react'
 import {useStylesSignIn} from '../pages/SignIn'
 
 interface ModalBlockProps{
-  title: string;
+  title?: string;
   children: React.ReactNode;
   classes?: ReturnType<typeof useStylesSignIn>
   visible? : boolean;
@@ -15,7 +18,7 @@ const ModalBlock:React.FC<ModalBlockProps> = ({title, children, onClose, visible
     return null
   }
   return (
-    <Dialog open={visible} onClick = {onClose} >
+    <Dialog open={visible}>
       <DialogTitle>
   <IconButton onClick={onClose} color='secondary' >&times;</IconButton> 
     {title}

@@ -1,12 +1,18 @@
-import { Button, Dialog, DialogActions, DialogContent, DialogContentText, DialogTitle, FormControl, FormGroup, IconButton, makeStyles, TextField, Typography } from '@material-ui/core'
 import React, { useState } from 'react'
 import TwitterIcon from '@material-ui/icons/Twitter';
 import SearchIcon from '@material-ui/icons/Search';
 import PeopleOutlineIcon from '@material-ui/icons/PeopleOutline';
 import ChatBubbleOutlineOutlinedIcon from '@material-ui/icons/ChatBubbleOutlineOutlined';
 import ModalBlock from '../components/ModalBlock'
+import Typography from '@material-ui/core/Typography/Typography';
+import Button from '@material-ui/core/Button/Button';
+import FormControl from '@material-ui/core/FormControl/FormControl';
+import FormGroup from '@material-ui/core/FormGroup/FormGroup';
+import TextField from '@material-ui/core/TextField/TextField';
+import makeStyles from '@material-ui/core/styles/makeStyles';
+import { Theme } from '@material-ui/core/styles/createMuiTheme';
 
-export const useStylesSignIn = makeStyles((theme) => ({
+export const useStylesSignIn = makeStyles((theme: Theme) => ({
   wrapper: {
     display: 'flex',
     height: '100vh',

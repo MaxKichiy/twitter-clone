@@ -1,11 +1,14 @@
-import { Avatar, Grid, IconButton, Paper, Typography } from '@material-ui/core';
+import React from 'react';
+import classNames from 'classnames';
 import CommentIcon from '@material-ui/icons/ChatBubbleOutline';import RepeatIcon from '@material-ui/icons/Repeat';
 import LikeIcon from '@material-ui/icons/FavoriteBorder';
 import ShareIcon from '@material-ui/icons/Reply';
 
-import classNames from 'classnames';
-import React from 'react';
-import { useHomeStyles } from '../pages/Home';
+import { useHomeStyles } from '../pages/Home/theme';
+import Paper from '@material-ui/core/Paper/Paper';
+import Avatar from '@material-ui/core/Avatar/Avatar';
+import Typography from '@material-ui/core/Typography/Typography';
+import IconButton from '@material-ui/core/IconButton/IconButton';
 
 interface TweetProps {
   text: string;
@@ -28,6 +31,7 @@ export const Tweet:React.FC<TweetProps> = ({text, user,classes}: TweetProps):Rea
             alt={`Аватарка пользователя ${user.fullname}`}
             src={user.avatarUrl}
           />
+            <div className={classes.tweetText}>
           <Typography>
   <b>{user.fullname}</b>
   <span className={classes.tweetUserName}>@{user.username}</span>
@@ -59,6 +63,7 @@ export const Tweet:React.FC<TweetProps> = ({text, user,classes}: TweetProps):Rea
                 <ShareIcon style={{ fontSize: 20 }} />
               </IconButton>
             </div>
+          </div>
           </div>
     </Paper>
   );
