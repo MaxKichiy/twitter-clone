@@ -1,4 +1,4 @@
-import { Button, IconButton, Typography } from '@material-ui/core'
+import { Button, Hidden, IconButton, Typography } from '@material-ui/core'
 import React from 'react'
 
 import TwitterIcon from '@material-ui/icons/Twitter';
@@ -7,6 +7,7 @@ import NotificationsIcon from '@material-ui/icons/NotificationsNone';
 import MailOutlineIcon from '@material-ui/icons/MailOutline';
 import BookmarkBorderIcon from '@material-ui/icons/BookmarkBorder';
 import ListIcon from '@material-ui/icons/Subject';
+import CreateIcon from '@material-ui/icons/Create';
 import UserIcon from '@material-ui/icons/PermIdentity';
 import { useHomeStyles } from '../pages/Home'
 
@@ -25,31 +26,42 @@ export const SideMenu: React.FC<SideMenuProps> = ({classes}:SideMenuProps ):Reac
              <li className={classes.sideMenuListItem}>
                <div>
                     <SearchIcon className={classes.sideMenuListItemIcon}/>
+                    <Hidden smDown>
+
                   <Typography className={classes.sideMenuListItemLabel} variant='h6'>Поиск</Typography>
+                    </Hidden>
                </div>
             </li>
              <li className={classes.sideMenuListItem}>
                <div>
                     <NotificationsIcon className={classes.sideMenuListItemIcon}/>
-                  <Typography className={classes.sideMenuListItemLabel} variant='h6'>Уведомления</Typography>
+                  <Hidden smDown>
+                    <Typography className={classes.sideMenuListItemLabel} variant='h6'>Уведомления</Typography>
+                  </Hidden>
                </div>
             </li>
              <li className={classes.sideMenuListItem}>
                <div>
                     <MailOutlineIcon/>
-                  <Typography className={classes.sideMenuListItemLabel} variant='h6'>Сообщения</Typography>
+                  <Hidden smDown>
+                    <Typography className={classes.sideMenuListItemLabel} variant='h6'>Сообщения</Typography>
+                  </Hidden>
                </div>
             </li>
              <li className={classes.sideMenuListItem}>
                <div>
                     <BookmarkBorderIcon className={classes.sideMenuListItemIcon}/>
-                  <Typography className={classes.sideMenuListItemLabel} variant='h6'>Закладки</Typography>
+                  <Hidden smDown>
+                    <Typography className={classes.sideMenuListItemLabel} variant='h6'>Закладки</Typography>
+                  </Hidden>
                </div>
             </li>
              <li className={classes.sideMenuListItem}>
                <div>
                     <ListIcon className={classes.sideMenuListItemIcon}/>
-                  <Typography className={classes.sideMenuListItemLabel} variant='h6'>Список</Typography>
+                  <Hidden smDown>
+                    <Typography className={classes.sideMenuListItemLabel} variant='h6'>Список</Typography>
+                  </Hidden>
                </div>
             </li>
              <li className={classes.sideMenuListItem}>
@@ -57,11 +69,20 @@ export const SideMenu: React.FC<SideMenuProps> = ({classes}:SideMenuProps ):Reac
                  
                     <UserIcon className={classes.sideMenuListItemIcon}/>
                   
-                  <Typography className={classes.sideMenuListItemLabel} variant='h6'>Профиль</Typography>
+                  <Hidden smDown>
+                    <Typography className={classes.sideMenuListItemLabel} variant='h6'>Профиль</Typography>
+                  </Hidden>
                </div>
             </li>
             <li className={classes.sideMenuListItem}>
-              <Button className={classes.sideMenuTweetButton} fullWidth variant='contained' color='primary' >Твитнуть</Button>
+              <Button className={classes.sideMenuTweetButton} fullWidth variant='contained' color='primary' >
+                <Hidden smDown>
+                  Твитнуть
+                </Hidden>
+                <Hidden>
+                  <CreateIcon style={{width: '40px'}}/>
+                </Hidden>
+                </Button>
             </li>
              
              

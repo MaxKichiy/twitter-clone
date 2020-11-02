@@ -23,15 +23,11 @@ export const Tweet:React.FC<TweetProps> = ({text, user,classes}: TweetProps):Rea
       className={classNames(classes.tweet, classes.tweetsHeader)}
       variant='outlined'
     >
-      <Grid container spacing={3}>
-        <Grid item xs={2}>
           <Avatar
           className={classes.tweetAvatar}
             alt={`Аватарка пользователя ${user.fullname}`}
             src={user.avatarUrl}
           />
-        </Grid>
-        <Grid item xs={10}>
           <Typography>
   <b>{user.fullname}</b>
   <span className={classes.tweetUserName}>@{user.username}</span>
@@ -64,8 +60,6 @@ export const Tweet:React.FC<TweetProps> = ({text, user,classes}: TweetProps):Rea
               </IconButton>
             </div>
           </div>
-        </Grid>
-      </Grid>
     </Paper>
   );
 };
