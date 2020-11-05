@@ -20,7 +20,4 @@ export const SearchTextField = withStyles((theme: Theme)=>({
      },
      '& fieldset': { borderColor: 'transparent', borderWidth: 1,},
   },
-  '& .MuiOutlinedInput-input': {
-    padding: '12px 14px 14px 5px',
-  },
 }))(TextField)

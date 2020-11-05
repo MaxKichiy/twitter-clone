@@ -15,14 +15,37 @@ import Divider from '@material-ui/core/Divider/Divider';
 import ListItemAvatar from '@material-ui/core/ListItemAvatar/ListItemAvatar';
 import Avatar from '@material-ui/core/Avatar/Avatar';
 import Button from '@material-ui/core/Button/Button';
+import CircularProgress from '@material-ui/core/CircularProgress';
+
 
 import { AddTweetForm } from '../../components/AddTweetForm';
 import { useHomeStyles } from './theme';
 import { SearchTextField } from '../../components/SearchTextField';
+import { fetchTweets } from '../../store/ducks/tweets/actionCreators';
+import { useDispatch, useSelector } from 'react-redux';
+import {selectIsTweetsLoading, selectTweetsItems} from '../../store/ducks/tweets/selectors';
+import { fetchTags } from '../../store/ducks/tags/actionCreators';
+import { Tags } from '../../components/Tags';
+import { Route } from 'react-router-dom';
+import { BackButton } from '../../components/BackButton';
+import { fetchTweetData } from '../../store/ducks/tweet/actionCreators';
+import { FullTweet } from './components/FullTweet';
+
 
 
 export const Home = ():React.ReactElement => {
+
   const classes = useHomeStyles();
+  const dispatch = useDispatch();
+  const tweets = useSelector(selectTweetsItems);
+  const isLoading = useSelector(selectIsTweetsLoading)
+
+
+  React.useEffect(() => {
+    dispatch(fetchTweets());
+    dispatch(fetchTags());
+
+  }, [dispatch])
   return (
     <Container maxWidth='lg' className={classes.wrapper}>
       
@@ -34,15 +57,31 @@ export const Home = ():React.ReactElement => {
          <Grid item sm={8} md={6}>
            <Paper className={classes.tweetsWrapper} variant='outlined'>
               <Paper className={classes.tweetsHeader} variant='outlined'>
-                <Typography variant='h6'>Главная</Typography>
+                <Route path='/home/:any'>
+                  <BackButton/>
+                </Route>
+             <Route path={['/home', '/home/search']} exact>
+                <Typography variant='h6'>Твиты</Typography>
+             </Route>
+             <Route path='/home/tweet'>
+                <Typography variant='h6'>Твитнуть</Typography>
+             </Route>
               </Paper>
-              <Paper>
-               <div className={classes.addForm}> <AddTweetForm classes={classes} />
-                <div className={classes.addFormBottomLine}/></div>
-              </Paper>
+              <Route path={['/home', '/home/search']} exact>
+                <Paper>
+                 <div className={classes.addForm}> <AddTweetForm classes={classes} />
+                  <div className={classes.addFormBottomLine}/></div>
+                </Paper>
+              </Route>
              
+              <Route path='/home/tweet/:id' component={FullTweet}/>
 
-             {new Array(20).fill( <Tweet text='Lorem ipsum dolor sit, amet consectetur adipisicing elit. Itaque, officia tempora quam voluptatibus est maxime dignissimos illo ipsam blanditiis reiciendis.' classes={classes} user={{fullname: 'Mark1', username: 'TheMark1', avatarUrl: 'https://images.unsplash.com/photo-1519058082700-08a0b56da9b4?ixlib=rb-1.2.1&ixid=eyJhcHBfaWQiOjEyMDd9&auto=format&fit=crop&w=634&q=80' }}/>)}
+              
+             <Route path='/home'exact>
+             {isLoading ? <div style={{textAlign:'center', marginTop:60}}><CircularProgress/></div> : tweets.map(tweet => 
+             <Tweet  key={tweet._id} {...tweet}classes={classes} 
+             />)} 
+             </Route>
            </Paper>
          </Grid>
          <Grid item sm={3} md={3}>
@@ -55,46 +94,7 @@ export const Home = ():React.ReactElement => {
               </InputAdornment>
             ),
            }}/>
-          <Paper className={classes.rightSideBlock}>
-            <Paper className={classes.rightSideBlockHeader} variant='outlined'>
-              <b>Актуальные темы</b>
-            </Paper>
-            <List>
-              <ListItem className={classes.rightSideBlockItem}>
-                <ListItemText
-                primary='Санкт-Петербург'
-                secondary={
-                  <Typography component='span' variant='body2'>
-                    Твитов: 3 331
-                  </Typography>
-                }
-                />
-              </ListItem>
-              <Divider component='li'/>
-              <ListItem className={classes.rightSideBlockItem}>
-                <ListItemText
-                primary='#коронавирус'
-                secondary={
-                  <Typography component='span' variant='body2'>
-                    Твитов: 163 122
-                  </Typography>
-                }
-                />
-              </ListItem>
-              <Divider component='li'/>
-              <ListItem className={classes.rightSideBlockItem}>
-                <ListItemText
-                primary='Беларусь'
-                secondary={
-                  <Typography component='span' variant='body2'>
-                    Твитов: 13 515
-                  </Typography>
-                }
-                />
-              </ListItem>
-              <Divider component='li'/>
-            </List>
-          </Paper>
+          <Tags classes={classes}/>
 
           <Paper className={classes.rightSideBlock}>
             <Paper className={classes.rightSideBlockHeader} variant='outlined'>
