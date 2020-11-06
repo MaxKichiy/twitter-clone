@@ -3,7 +3,6 @@ export enum LoadingState {
   LOADING='LOADING',
   ERROR='ERROR',
   NEVER='NEVER',
-
 }
 
 export interface Tweet {

@@ -10,9 +10,9 @@ import FormControl from '@material-ui/core/FormControl/FormControl';
 import FormGroup from '@material-ui/core/FormGroup/FormGroup';
 import TextField from '@material-ui/core/TextField/TextField';
 import makeStyles from '@material-ui/core/styles/makeStyles';
-import { Theme } from '@material-ui/core/styles/createMuiTheme';
+// import { Theme } from '@material-ui/core/styles/createMuiTheme';
 
-export const useStylesSignIn = makeStyles((theme: Theme) => ({
+export const useStylesSignIn = makeStyles(() => ({ // theme: Theme
   wrapper: {
     display: 'flex',
     height: '100vh',
@@ -82,6 +82,7 @@ export const useStylesSignIn = makeStyles((theme: Theme) => ({
 export const SignIn: React.FC = ():React.ReactElement => {
   const classes = useStylesSignIn()
   const [visibleModal, setVisibleModal] = useState<'signIn' | 'signUp'>()
+  
 
   const handleClickOpenSignIn = ():void => { 
     setVisibleModal('signIn')
@@ -99,7 +100,7 @@ export const SignIn: React.FC = ():React.ReactElement => {
       <section className={classes.bluedSide}>
       <TwitterIcon className={classes.blueSideBigIcon} color='primary'/>
         <ul className={classes.blueSideListInfo}>
-          <li className={classes.blueSideListInfoItem}><Typography variant="h6"><SearchIcon className={classes.blueSideListInfoIcon}/>Читайте о том, что вам интересно.</Typography></li>
+          <li className={classes.blueSideListInfoItem}><Typography variant="h6" ><SearchIcon className={classes.blueSideListInfoIcon}/>Читайте о том, что вам интересно.</Typography></li>
           <li className={classes.blueSideListInfoItem}><Typography variant="h6"><PeopleOutlineIcon className={classes.blueSideListInfoIcon}/>Узнайте, о чем говорят в мире.</Typography></li>
           <li className={classes.blueSideListInfoItem}><Typography variant="h6"><ChatBubbleOutlineOutlinedIcon className={classes.blueSideListInfoIcon}/>Присоединяйтесь к общению.</Typography></li>
         </ul>
@@ -113,7 +114,7 @@ export const SignIn: React.FC = ():React.ReactElement => {
       <Button onClick = {handleClickOpenSignUp}  variant='contained' color='primary' fullWidth style={{marginBottom:20}}>Зарегистрироваться</Button>
       <Button onClick={handleClickOpenSignIn} variant='outlined' fullWidth color='primary'>Войти</Button>
       <ModalBlock visible={visibleModal === 'signIn'}  title="Войти в аккаут" onClose={handleCloseModal}>
-      <FormControl component='fieldset' fullWidth >
+      <FormControl component='fieldset'  fullWidth >
         <FormGroup aria-label='position' row>
         <TextField className={classes.loginSideField} 
         autoFocus

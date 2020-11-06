@@ -1,4 +1,3 @@
-import { Tweet } from './../tweets/contracts/state';
 import { LoadingState, TweetState } from './contracts/state';
 import { Action } from 'redux';
 

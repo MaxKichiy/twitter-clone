@@ -23,13 +23,6 @@ export const tweetsReducer =produce((draft:Draft<TweetsState>, action:TweetsActi
 
     case TweetsActionsType.SET_LOADING_STATE:
       draft.loadingState=action.payload
-      break;
-    default:
-      break;
   }
-
-  // if(action.type === TweetsActionsType.SET_TWEETS){
-  //   draft.items = action.payload
-  // }
 
 },initialTweetsState);

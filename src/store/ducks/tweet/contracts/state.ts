@@ -9,6 +9,6 @@ export enum LoadingState {
 
 
 export interface TweetState{
-  data?: any;
+  data?: Tweet | any;
   loadingState: LoadingState;
 }
