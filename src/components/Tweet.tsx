@@ -42,7 +42,7 @@ export const Tweet:React.FC<TweetProps> = ({_id,text, user,classes}: TweetProps)
     <span className={classes.tweetUserName}>&nbsp;·&nbsp;</span>
     <span className={classes.tweetUserName}>1ч</span>
             </Typography>
-            <Typography>
+            <Typography variant='body1' gutterBottom>
               {text}
             </Typography>
             <div className={classes.tweetFooter}>

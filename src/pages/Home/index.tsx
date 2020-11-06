@@ -37,9 +37,19 @@ export const Home = ():React.ReactElement => {
   const classes = useHomeStyles();
   const dispatch = useDispatch();
   const tweets = useSelector(selectTweetsItems);
-  const isLoading = useSelector(selectIsTweetsLoading)
-  
+  const isLoading = useSelector(selectIsTweetsLoading);
 
+  const lastToFirst = (array:any) => {
+    let newArr=[]
+    if(tweets.length > 1){
+      for(let n =array.length; n >= 0; n--){
+        newArr.push(array[n])
+      }
+        
+    }
+    return newArr.splice(1);
+    }
+  
   React.useEffect(() => {
     dispatch(fetchTweets());
     dispatch(fetchTags());
@@ -77,7 +87,7 @@ export const Home = ():React.ReactElement => {
 
               
              <Route path='/home'exact>
-             {isLoading ? <div style={{textAlign:'center', marginTop:60}}><CircularProgress/></div> :  tweets.map(tweet => 
+             {isLoading ? <div style={{textAlign:'center', marginTop:60}}><CircularProgress/></div> :  lastToFirst(tweets).map(tweet => 
              {
                if(tweet !== null){
                 return <Tweet  key={tweet._id} {...tweet}classes={classes} 
