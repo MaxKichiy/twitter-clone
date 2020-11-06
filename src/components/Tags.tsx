@@ -31,8 +31,8 @@ export const Tags:React.FC<TagsProps> = ({classes}: TagsProps):React.ReactElemen
             </Paper>
             <List>
               {
-                tags.map(el => (
-                  <React.Fragment key={el._id}>
+                tags.map((el,index) => (
+                  <React.Fragment key={index}>
                   <ListItem  className={classes.rightSideBlockItem}>
                     <Link key={el._id} to={`/home/search?q=${el.name}`}>
                 <ListItemText

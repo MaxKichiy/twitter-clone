@@ -9,19 +9,26 @@ import IconButton from '@material-ui/core/IconButton/IconButton';
 import CircularProgress from '@material-ui/core/CircularProgress/CircularProgress';
 import Button from '@material-ui/core/Button/Button';
 import { useHomeStyles } from '../pages/Home/theme';
+import {  fetchAddTweet } from '../store/ducks/tweets/actionCreators';
+import { useDispatch } from 'react-redux';
 
 
 interface AddTweetFormProps{
   classes: ReturnType<typeof useHomeStyles>;
   maxRows?: number; 
+  lastItem?: any
 }
 
 const MAX_LENGTH = 280
 
-export const AddTweetForm:React.FC<AddTweetFormProps> = ({classes, maxRows} : AddTweetFormProps):React.ReactElement => {
+export const AddTweetForm:React.FC<AddTweetFormProps> = ({classes, maxRows, lastItem} : AddTweetFormProps):React.ReactElement => {
+
+const dispatch = useDispatch()
 const [text, setText] = React.useState<string>('')
 const textLimitPercent = Math.floor(text.length/280*100)
 const maxLength = MAX_LENGTH -  text.length;
+
+
 
 const handleChangeTextarea =(e : React.FormEvent<HTMLTextAreaElement>):void => {
   if(e.currentTarget){
@@ -30,8 +37,10 @@ const handleChangeTextarea =(e : React.FormEvent<HTMLTextAreaElement>):void => {
 }
 
 const handleClickAddTweet = (): void => {
+  dispatch(fetchAddTweet(text, lastItem))
   setText('')
  }
+
 
   return (
     <div>

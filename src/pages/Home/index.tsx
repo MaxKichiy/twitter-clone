@@ -38,7 +38,7 @@ export const Home = ():React.ReactElement => {
   const dispatch = useDispatch();
   const tweets = useSelector(selectTweetsItems);
   const isLoading = useSelector(selectIsTweetsLoading)
-
+  
 
   React.useEffect(() => {
     dispatch(fetchTweets());
@@ -68,7 +68,7 @@ export const Home = ():React.ReactElement => {
               </Paper>
               <Route path={['/home', '/home/search']} exact>
                 <Paper>
-                 <div className={classes.addForm}> <AddTweetForm classes={classes} />
+                 <div className={classes.addForm}> <AddTweetForm classes={classes} lastItem={tweets.length}/>
                   <div className={classes.addFormBottomLine}/></div>
                 </Paper>
               </Route>
@@ -77,9 +77,14 @@ export const Home = ():React.ReactElement => {
 
               
              <Route path='/home'exact>
-             {isLoading ? <div style={{textAlign:'center', marginTop:60}}><CircularProgress/></div> : tweets.map(tweet => 
-             <Tweet  key={tweet._id} {...tweet}classes={classes} 
-             />)} 
+             {isLoading ? <div style={{textAlign:'center', marginTop:60}}><CircularProgress/></div> :  tweets.map(tweet => 
+             {
+               if(tweet !== null){
+                return <Tweet  key={tweet._id} {...tweet}classes={classes} 
+                />
+               }
+             }
+             )} 
              </Route>
            </Paper>
          </Grid>
